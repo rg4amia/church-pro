@@ -25,15 +25,19 @@ export function SignInForm() {
     }
 
     startTransition(async () => {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) {
-        toast.error(error.message);
+      const response = await fetch("/api/auth/sign-in", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const result = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        toast.error(result.error ?? "Connexion impossible");
         return;
       }
 
       toast.success("Connexion réussie");
-      // Hard redirect pour que le middleware voie le cookie de session
-      // avant de résoudre le church_slug côté serveur.
       window.location.href = "/";
     });
   }

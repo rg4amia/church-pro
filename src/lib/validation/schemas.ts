@@ -98,3 +98,8 @@ export const createChurchSchema = z.object({
   email: z.string().email("Email invalide"),
   password: z.string().min(8, "Mot de passe de 8 caractères minimum"),
 });
+
+export const signInSchema = z.object({
+  email: z.string().trim().email("Email invalide"),
+  password: z.string().min(1, "Le mot de passe est requis"),
+});
