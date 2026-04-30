@@ -10,7 +10,6 @@
 -- -------------------------------------------------------
 
 drop policy if exists "churches_select" on public.churches;
-
 create policy "churches_select"
 on public.churches for select
 using (

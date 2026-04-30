@@ -4,7 +4,6 @@
 insert into public.churches (id, nom, slug)
 values ('00000000-0000-0000-0000-c00000000001', 'Église Grâce Abidjan', 'grace-abidjan')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Utilisateurs auth
 -- -------------------------------------------------------
@@ -64,7 +63,6 @@ values
     '', '', '', ''
   )
 on conflict (id) do nothing;
-
 insert into auth.identities (
   id, user_id, identity_data, provider, provider_id,
   last_sign_in_at, created_at, updated_at
@@ -99,7 +97,6 @@ values
     timezone('utc', now()), timezone('utc', now()), timezone('utc', now())
   )
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Membres
 -- -------------------------------------------------------
@@ -117,7 +114,6 @@ values
   ('10000000-0000-0000-0000-000000000007', 'Kouassi',   'Prisca',  '+2250701000007', 'prisca.kouassi@gesteglise.demo',   'Riviera 2',               '1991-09-28', 'membre',          'Riviera',    '10000000-0000-0000-0000-000000000006', 'Coordinatrice accueil.',                            '2019-09-01', '00000000-0000-0000-0000-c00000000001'),
   ('10000000-0000-0000-0000-000000000008', 'Adjei',     'Noah',    '+2250701000008', 'noah.adjei@gesteglise.demo',       'Songon',                  '2003-06-17', 'nouveau_converti', 'Songon',     '10000000-0000-0000-0000-000000000003', 'Intégration via jeunesse.',                         '2026-04-13', '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Profils (avec church_id et rôles)
 -- -------------------------------------------------------
@@ -125,22 +121,18 @@ update public.profiles
 set role = 'ADMIN',       member_id = '10000000-0000-0000-0000-000000000001',
     display_name = 'Apôtre Jean Mensah',   church_id = '00000000-0000-0000-0000-c00000000001'
 where user_id = 'a0000000-0000-0000-0000-000000000001';
-
 update public.profiles
 set role = 'RESPONSABLE', member_id = '10000000-0000-0000-0000-000000000002',
     display_name = 'Pasteur Ruth Yao',     church_id = '00000000-0000-0000-0000-c00000000001'
 where user_id = 'a0000000-0000-0000-0000-000000000002';
-
 update public.profiles
 set role = 'MEMBRE',      member_id = '10000000-0000-0000-0000-000000000006',
     display_name = 'Samuel N''Guessan',    church_id = '00000000-0000-0000-0000-c00000000001'
 where user_id = 'a0000000-0000-0000-0000-000000000003';
-
 update public.profiles
 set role = 'VISITEUR',    member_id = '10000000-0000-0000-0000-000000000005',
     display_name = 'Clarisse Amani',       church_id = '00000000-0000-0000-0000-c00000000001'
 where user_id = 'a0000000-0000-0000-0000-000000000004';
-
 -- -------------------------------------------------------
 -- Cellules de prière
 -- -------------------------------------------------------
@@ -150,7 +142,6 @@ values
   ('30000000-0000-0000-0000-000000000002', 'Cellule Siloé',    'Abobo Dokui',    '10000000-0000-0000-0000-000000000003', 'Mercredi', '18:00', '00000000-0000-0000-0000-c00000000001'),
   ('30000000-0000-0000-0000-000000000003', 'Cellule Grâce',    'Riviera 2',      '10000000-0000-0000-0000-000000000007', 'Vendredi', '19:00', '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Réunions de cellule
 -- -------------------------------------------------------
@@ -161,7 +152,6 @@ values
   ('31000000-0000-0000-0000-000000000003', '30000000-0000-0000-0000-000000000001', '2026-04-22', 'La fidélité dans le service',       7, 11, 5, 3, 'Suivi immédiat des visiteurs conseillé.',        '00000000-0000-0000-0000-c00000000001'),
   ('31000000-0000-0000-0000-000000000004', '30000000-0000-0000-0000-000000000003', '2026-04-25', 'Foi et discipline spirituelle',     5, 10, 2, 2, 'Prévoir un renforcement accueil.',               '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Cultes
 -- -------------------------------------------------------
@@ -172,7 +162,6 @@ values
   ('40000000-0000-0000-0000-000000000003', '2026-04-20', 'semaine',           'Fr. Samuel N''Guessan',   'Servir avec excellence',            34, 49, 12, 5,  null,                                                    '00000000-0000-0000-0000-c00000000001'),
   ('40000000-0000-0000-0000-000000000004', '2026-04-27', 'ecole_du_dimanche', 'Servante Prisca Kouassi', 'Former la prochaine génération',    21, 37, 58, 8,  null,                                                    '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Suivi nouveaux convertis
 -- -------------------------------------------------------
@@ -182,7 +171,6 @@ values
   ('50000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000005', null,         false, '30000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000007', 'Invitation au parcours découverte.',      '2026-05-04 18:00:00+00', '00000000-0000-0000-0000-c00000000001'),
   ('50000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000008', '2026-04-27', false, '30000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000003', 'Très engagé, à orienter vers jeunesse.', '2026-05-01 17:30:00+00', '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Départements
 -- -------------------------------------------------------
@@ -192,7 +180,6 @@ values
   ('60000000-0000-0000-0000-000000000002', 'Jeunesse', '10000000-0000-0000-0000-000000000003', 'Encadrement et développement des jeunes de l''église.',       '00000000-0000-0000-0000-c00000000001'),
   ('60000000-0000-0000-0000-000000000003', 'Média',    '10000000-0000-0000-0000-000000000006', 'Captation, diffusion et archivage des contenus.',             '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Activités de département
 -- -------------------------------------------------------
@@ -202,7 +189,6 @@ values
   ('70000000-0000-0000-0000-000000000002', '60000000-0000-0000-0000-000000000002', 'Atelier vocation et leadership',            '2026-04-16', 'Former 25 jeunes leaders.',                              '31 participants, 9 binômes de mentorat créés.',   '00000000-0000-0000-0000-c00000000001'),
   ('70000000-0000-0000-0000-000000000003', '60000000-0000-0000-0000-000000000003', 'Mise à niveau captation audio/vidéo',       '2026-04-18', 'Réduire les pannes et améliorer la diffusion.',          'Deux opérateurs formés, latence abaissée.',       '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Inventaire
 -- -------------------------------------------------------
@@ -213,14 +199,12 @@ values
   ('80000000-0000-0000-0000-000000000003', 'Chaises visiteurs',             'Mobilier', 'bon',       'Salle principale', '2023-11-18', 560000, 120, '00000000-0000-0000-0000-c00000000001'),
   ('80000000-0000-0000-0000-000000000004', 'Projecteur Epson EH-TW',        'Vidéo',    'panne',     'Salle technique',  '2022-06-01', 470000, 1,   '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 insert into public.inventory_movements (id, bien_id, mouvement_type, quantite, destination, commentaire, moved_at, church_id)
 values
   ('81000000-0000-0000-0000-000000000001', '80000000-0000-0000-0000-000000000002', 'maintenance', 1,  'Atelier technique', 'Interférences fréquentes.',              '2026-04-25 09:30:00+00', '00000000-0000-0000-0000-c00000000001'),
   ('81000000-0000-0000-0000-000000000002', '80000000-0000-0000-0000-000000000004', 'sortie',      1,  'Prestataire SAV',   'Lampe grillée et bruit ventilateur.',    '2026-04-28 10:00:00+00', '00000000-0000-0000-0000-c00000000001'),
   ('81000000-0000-0000-0000-000000000003', '80000000-0000-0000-0000-000000000003', 'entree',      20, 'Réserve accueil',   'Livraison complémentaire événement Pâques.', '2026-04-02 14:00:00+00', '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Prédications
 -- -------------------------------------------------------
@@ -230,7 +214,6 @@ values
   ('90000000-0000-0000-0000-000000000002', '40000000-0000-0000-0000-000000000002', 'La grâce qui restaure',       'Pasteur Ruth Yao',   '2026-04-13', '09:35', 'Comment la grâce de Dieu répare les fractures invisibles.',    'https://www.youtube.com/watch?v=ysz5S6PUM-U', 'https://img.youtube.com/vi/ysz5S6PUM-U/maxresdefault.jpg', '00000000-0000-0000-0000-c00000000001'),
   ('90000000-0000-0000-0000-000000000003', '40000000-0000-0000-0000-000000000003', 'Servir avec excellence',      'Fr. Samuel N''Guessan','2026-04-20','18:20', 'Une culture de qualité au service de la mission.',            'https://www.youtube.com/watch?v=jNQXAC9IVRw', 'https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg', '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Notifications
 -- -------------------------------------------------------
@@ -241,7 +224,6 @@ values
   ('91000000-0000-0000-0000-000000000003', 'Nouvelle prédication disponible','La vidéo ''La grâce qui restaure'' est en ligne.',   'nouvelle_predication','realtime', 'MEMBRE',      null,                                   '2026-04-14 13:15:00+00', '2026-04-14 13:15:00+00', '2026-04-14 15:00:00+00','{"sermon_id":"90000000-0000-0000-0000-000000000002"}','00000000-0000-0000-0000-c00000000001'),
   ('91000000-0000-0000-0000-000000000004', 'Brief média samedi',             'Répétition technique à 15h en salle régie.',         'message_interne',    'sms',      'RESPONSABLE', null,                                   '2026-05-02 15:00:00+00', null,                      null,                       '{"departement":"Média"}',                 '00000000-0000-0000-0000-c00000000001')
 on conflict (id) do nothing;
-
 -- -------------------------------------------------------
 -- Participations
 -- -------------------------------------------------------
